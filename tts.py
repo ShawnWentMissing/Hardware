@@ -1,5 +1,7 @@
 from gtts import gTTS
+from pygame import mixer
 import os
+mixer.init()
 
 def text_to_speech(text, language='en', filename='output2.mp3'):
     """
@@ -14,6 +16,24 @@ def text_to_speech(text, language='en', filename='output2.mp3'):
     tts.save(filename)
     print(f"Saved TTS as '{filename}'")
 
+
+def play_audio(filename='output2.mp3'):
+    """
+    Play the audio file.
+    
+    Args:
+        filename (str, optional): The filename of the audio file to play (default is 'output.mp3').
+    """
+    mixer.music.load(filename)
+    mixer.music.play()
+    while mixer.music.get_busy():
+        pass
+
+
+def play_score(player1,player2):
+    text = f"{player1} {player2}"
+    text_to_speech(text)
+    play_audio()
+
 if __name__ == "__main__":
-    input_text = input("Enter the text to convert to speech: ")
-    text_to_speech(input_text)
+    play_score(5, 3)
