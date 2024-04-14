@@ -52,7 +52,12 @@ async def receive_data():
         try:
             while True:
                 data = await websocket.recv()
-                print("Received:", data)
+                data = data.split(" ")
+                player1 = int(data[0])
+                player2 = int(data[1])
+                handout = bool(data[2])
+                play_score(player1, player2, handout)
+
         except websockets.exceptions.ConnectionClosed:
             print("WebSocket connection closed")
 
