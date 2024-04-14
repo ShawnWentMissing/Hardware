@@ -174,5 +174,7 @@ poetry.toml
 pyrightconfig.json
 
 *.mp3
-
+*.png
+*.mp4
+*.zip
 # End of https://www.toptal.com/developers/gitignore/api/python
