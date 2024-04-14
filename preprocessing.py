@@ -43,7 +43,7 @@ def merge(img1, img2, img3, img4):
 
     # get the dimensions of the images
     h1, w1 = img1.shape[:2]
-    img2 = cv2.rotate(img2, cv2.ROTATE_90_CLOCKWISE)
+    # img2 = cv2.rotate(img2, cv2.ROTATE_90_CLOCKWISE)
     h2, w2 = img2.shape[:2]
     # img3 = cv2.rotate(img2, cv2.ROTATE_90_CLOCKWISE)
     # rotate img3 90 degrees
