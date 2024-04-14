@@ -1,8 +1,9 @@
-from gtts import gTTS
+# from gtts import gTTS
 from pygame import mixer
 import os
+import pyttsx3
 mixer.init()
-
+engine = pyttsx3.init()
 def text_to_speech(text, language='en', filename='output2.mp3'):
     """
     Convert text to speech and save it as an MP3 file.
@@ -12,28 +13,33 @@ def text_to_speech(text, language='en', filename='output2.mp3'):
         language (str, optional): The language code (default is 'en' for English).
         filename (str, optional): The filename for the output MP3 file (default is 'output.mp3').
     """
-    tts = gTTS(text=text, lang=language, slow=False)
-    tts.save(filename)
-    print(f"Saved TTS as '{filename}'")
+    # tts = gTTS(text=text, lang=language, slow=False)
+    engine.say(text)
+    engine.runAndWait()
+
+    # tts.save(filename)
+    # print(f"Saved TTS as '{filename}'")
 
 
-def play_audio(filename='output2.mp3'):
-    """
-    Play the audio file.
+# def play_audio(filename='output2.mp3'):
+#     """
+#     Play the audio file.
     
-    Args:
-        filename (str, optional): The filename of the audio file to play (default is 'output.mp3').
-    """
-    mixer.music.load(filename)
-    mixer.music.play()
-    while mixer.music.get_busy():
-        pass
+#     Args:
+#         filename (str, optional): The filename of the audio file to play (default is 'output.mp3').
+#     """
+#     mixer.music.load(filename)
+#     mixer.music.play()
+#     while mixer.music.get_busy():
+#         pass
 
 
-def play_score(player1,player2):
+def play_score(player1,player2, handout = False):
     text = f"{player1} {player2}"
+    if handout:
+        text += " Handout"
     text_to_speech(text)
-    play_audio()
+    # play_audio()
 
 if __name__ == "__main__":
-    play_score(5, 3)
+    play_score(5, 3, True)
